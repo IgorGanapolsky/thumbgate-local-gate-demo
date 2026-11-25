@@ -1,21 +1,19 @@
 # ThumbGate local gate demo
 
-A free, standalone Node.js demonstration of a coding agent proposing a destructive database action and a simulated gate checking it before execution. It uses only Node.js built-ins; there is no framework, build step, dependency install, API key, network call, live agent, shell, or database.
+A standalone Node.js simulation showing a local gate checking a proposed destructive database action.
 
-## Run it
+## Run
 
-Install Node.js if it is not already available, then run this one command from this directory:
+`node demo.js`
 
-```sh
-node demo.js
-```
+## The three steps
 
-No `npm install` is needed.
+1. **Blocked destructive action:** The demo prints a preflight manifest, blocks `DROP TABLE customers` before execution, and shows proof that both in-memory customer rows survive.
+2. **Remembered thumbs-down:** The same destructive proposal is blocked again using the remembered thumbs-down for that command.
+3. **Allowed read:** A read-only `SELECT` is allowed and returns the simulated rows.
 
-## What you should see
+## Scope
 
-The terminal labels the program as a **SIMULATION ONLY**, prints a preflight manifest for `DROP TABLE customers` (including the command, arguments, affected in-memory table, and matched rule), blocks the action, and confirms the two in-memory rows remain. It then records a thumbs-down lesson, blocks the identical proposal using that remembered lesson, and allows a read-only `SELECT` query. The exact output is deterministic.
+This is a simulation with no live agent, shell, or database connected, and therefore does not prove real-world enforcement.
 
-This demo is a simulation; it does **not** prove a live hook against a real coding agent, shell, or database.
-
-Learn more: ThumbGate Reliable Agent Governance Kit — https://thumbgate.ai
+Learn more: [ThumbGate Reliable Agent Governance Kit](https://thumbgate.ai)
